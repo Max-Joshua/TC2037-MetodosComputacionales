@@ -15,7 +15,7 @@ Andrea Yela A01025250
 - [Instrucciones de actividad](#Instrucciones-de-actividad])
 
 - [Instrucciones de uso](#Instrucciones-de-uso)
-    - [Paso 1](#1.-Definir-la-función-a-usar:)
+    - [Paso 1](#1.-Definir-la-función-a-usar)
     - [Paso 2](#2.-Compilar-el-código)
     - [Paso 3](#3.-Resultados-y-salida-del-DFA)
     - [Paso 4](#4.-Lectura-de-resultado)
