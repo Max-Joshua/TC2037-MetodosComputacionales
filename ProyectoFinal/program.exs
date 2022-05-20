@@ -20,7 +20,7 @@ defmodule Tlist do
 
     #Using pipe operator to link the calls
     text2 =
-        "base.html" 
+        "base.html"
         |>File.stream!()
         |>Enum.filter(&(&1 != nil))
 
@@ -58,7 +58,7 @@ defmodule Tlist do
   end
 
   def replaceNumber(line) do
-    Regex.replace(~r/(\d+)/, line, "<span class=\"number\">\\1</span>")
+    Regex.replace(~r/( )(\d+.\d+|\d+)(,| |\n|\}|\])/, line, "\\1<span class=\"number\">\\2</span>\\3")
   end
 
   # def replaceTabs(line) do

@@ -38,7 +38,8 @@ h2
     border-left: 1px solid rgba(102, 102, 102, 0.1);
 }
 
-.number
+.number 
 {
-    color:#997b66; 
+    /* color:#997b66;  */
+    color: red;
 }
