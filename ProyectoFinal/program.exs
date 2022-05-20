@@ -49,6 +49,10 @@ defmodule Tlist do
     Regex.replace(~r/\n/, line, "<br>")
   end
 
+  def replaceInt(line) do
+    Regex.replace(~r/(\d+)/, file, "<span class=\"int\">\\1</span>")
+  end
+
   # def replaceTabs(line) do
   #   # replace all strings with necessar
   #   Regex.replace(~r/\t/, line, "    ")

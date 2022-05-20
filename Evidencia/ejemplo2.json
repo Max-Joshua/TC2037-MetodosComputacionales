@@ -1,0 +1,8 @@
+[
+    {
+        "titulo": "Hola",
+        "prestados": 5,
+        "paginas": 100,
+        "autores": ["Yo", "tu"]
+    }
+]
