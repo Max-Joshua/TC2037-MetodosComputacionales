@@ -9,15 +9,23 @@ defmodule Tlist do
         |>Enum.map(&changeKeys/1)
         |>Enum.map(&replaceString/1)
         |>Enum.map(&replaceBool/1)
+        |>Enum.map(&replaceNumber/1)
         |>Enum.map(&replaceParentesisStart/1)
         |>Enum.map(&replaceParentesisEnd/1)
         |>Enum.map(&revertKeys/1)
         |>Enum.map(&replaceNewlines/1)
         |>Enum.filter(&(&1 != nil))
 
-    File.write(out_filename, text)
-  end
+    data2 = File.stream!("base.html") #Lista de renglones
 
+    #Using pipe operator to link the calls
+    text2 =
+        "base.html" 
+        |>File.stream!()
+        |>Enum.filter(&(&1 != nil))
+
+    File.write(out_filename, [text2, text, "</p>\n</body>\n</html>"])
+  end
 
   def changeKeys(line), do: Regex.replace(~r/"(.+)":/, line, "<keyS>\\1<keyE>")
 
@@ -49,8 +57,8 @@ defmodule Tlist do
     Regex.replace(~r/\n/, line, "<br>")
   end
 
-  def replaceInt(line) do
-    Regex.replace(~r/(\d+)/, file, "<span class=\"int\">\\1</span>")
+  def replaceNumber(line) do
+    Regex.replace(~r/(\d+)/, line, "<span class=\"number\">\\1</span>")
   end
 
   # def replaceTabs(line) do

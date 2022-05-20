@@ -7,7 +7,7 @@
                         "associatedDrug":[{
                             "name":"asprin",
                             "dose":"",
-                            "strength":"500 mg"
+                            "strength": 500
                         }],
                         "associatedDrug#2":[{
                             "name":"somethingElse",
