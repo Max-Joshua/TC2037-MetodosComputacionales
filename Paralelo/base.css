@@ -1,0 +1,45 @@
+*
+{
+    font-family: 'Ubuntu Mono', monospace;
+    background-color: #FEFAE0;
+    color: #a3543d;
+}
+h2
+{
+    display: flex;
+    justify-content: center;
+}
+.parentesis
+{
+    color: #D4A373;
+}
+
+.keys
+{
+    color: #5C8148; 
+}
+
+.string
+{
+    color: #E76F51;
+}
+
+.bool
+{
+    color: #723d46;
+}
+
+.indent
+{
+    margin: 0px;
+    padding: 0px;
+    padding-left: 10px;
+    margin-left: 5px;
+    border-left: 1px solid rgba(102, 102, 102, 0.1);
+}
+
+.number 
+{
+    /* color:#997b66;  */
+    color: red;
+}
