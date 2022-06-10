@@ -30,6 +30,7 @@ defmodule Tlist do
 #Build - archivo html (lo que se está esccribiendo)
 #estado - Para saber en que modo estas
 
+#Corchete
 #Agrega el corchete al build
   def inicioCorchete([hd | tl], build, estado) do
     buscarDato(tl, Enum.join([build, "<span class=\"parentesis\">[</span><br>"]), ["[" | estado])
@@ -67,27 +68,34 @@ defmodule Tlist do
       hd == _ -> buscarDatoCorchete(tl, build)
     end
   end
-  def datoIntCorchete() do
 
+  def datoIntCorchete([hd | tl], build, estado) do
+    cond do
+      Regex.match?(~r/^\d$/, hd) -> datoIntCorchete(tl, Enum.join([build, hd]), estado)
+      hd == "." -> datoFloatCorchete(tl, Enum.join([build, hd]), estado)
+      true -> sigDatoCorchete([hd | tl], Enum.join([build, "</span>"]), estado)
+    end
+  end
+
+  def datoFloatCorchete([hd | tl], build, estado) do
+    cond do
+      Regex.match?(~r/^\d$/, hd) -> modoFloat(tl, Enum.join([build, hd]), estado)
+      true -> modoIterarCorchete([hd | tl], Enum.join([build, "</span>"]), estado)
+    end
+  end
+
+  def datoBoolCorchete([hd | tl], build, stack) do
+    cond do
+      Regex.match?(~r/[truefalsn]/, hd) -> datoBoolCorchete(tl, Enum.join([build, hd]), estado)
+      true -> sigDatoCorchete([hd | tl], Enum.join([build, "</span>"]), estado)
+    end
   end
 
   def datoStringCorchete([hd | tl], build) do
     case hd do
-      "\""-> modoValor(tl, Enum.join([build, hd, "</span>"]))
-      _ -> modoString(tl, Enum.join([build, hd]))
+      "\""-> modoValor(tl, Enum.join([build, hd, "</span>"]), estado)
+      _ -> sigDatoCorchete(tl, Enum.join([build, hd]), estado)
   end
 
+#Llave
 
-
-  def inicioLlave([hd | tl], build) do
-    modoValor(tl, Enum.join([build, "<span class=\"parentesis\">{</span><br>"]))
-  end
-
-  def modoLlaveF([hd | tl], build) do
-    modoValor(tl, Enum.join([build, "<span class=\"parentesis\">}</span><br>"]))
-  end
-
-  def modoLlaveS([hd | tl], build) do
-
-  end
-end
