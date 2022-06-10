@@ -136,25 +136,25 @@ def datoStringLlave([hd | tl], build, stack) do
 end
 
 def datoIntLlave([hd | tl], build, estado) do
-cond do
-  Regex.match?(~r/^\d$/, hd) -> datoIntLlave(tl, Enum.join([build, hd]), estado)
-  hd == "." -> datoFloatLlave(tl, Enum.join([build, hd]), estado)
-  true -> sigDatoLlave([hd | tl], Enum.join([build, "</span>"]), estado)
-end
+  cond do
+    Regex.match?(~r/^\d$/, hd) -> datoIntLlave(tl, Enum.join([build, hd]), estado)
+    hd == "." -> datoFloatLlave(tl, Enum.join([build, hd]), estado)
+    true -> sigDatoLlave([hd | tl], Enum.join([build, "</span>"]), estado)
+  end
 end
 
 def datoFloatLlave([hd | tl], build, estado) do
-cond do
-  Regex.match?(~r/^\d$/, hd) -> modoFloat(tl, Enum.join([build, hd]), estado)
-  true -> modoIterarCorchete([hd | tl], Enum.join([build, "</span>"]), estado)
-end
+  cond do
+    Regex.match?(~r/^\d$/, hd) -> modoFloat(tl, Enum.join([build, hd]), estado)
+    true -> modoIterarCorchete([hd | tl], Enum.join([build, "</span>"]), estado)
+  end
 end
 
 def datoBoolLlave([hd | tl], build, stack) do
-cond do
-  Regex.match?(~r/[truefalsn]/, hd) -> datoBoolCorchete(tl, Enum.join([build, hd]), estado)
-  true -> sigDatoCorchete([hd | tl], Enum.join([build, "</span>"]), estado)
-end
+  cond do
+    Regex.match?(~r/[truefalsn]/, hd) -> datoBoolCorchete(tl, Enum.join([build, hd]), estado)
+    true -> sigDatoCorchete([hd | tl], Enum.join([build, "</span>"]), estado)
+  end
 end
 
 def buscarDatoLlave([hd | tl], build) do
